@@ -485,3 +485,148 @@ h6 {
     font-size: 1.4rem;
     font-weight: 500;
 }
+
+Publishing
+Discover the most powerful modern open source publishing platform
+
+Memberships
+Turn your audience into a business with memberships & subscriptions
+
+Integrations
+Hundreds of apps directly integrated with Ghost, thousands more via Zapier
+
+Themes
+A curated gallery of beautiful pre-made publication templates for Ghost
+
+Customers
+Real results from real companies using Ghost to publish their content
+
+INDUSTRY
+For Startups
+For Newsletters
+For Bloggers
+COMPARISONS
+Ghost vs WordPress
+Ghost vs Medium
+Ghost vs Tumblr
+June Updates: What's New
+We've been hard at work during lockdown, updating Ghost and working on many of your most requested features ✨
+Documentation
+Detailed docs for developers
+
+Install / Setup
+How to install & configure Ghost
+
+Theme Docs
+Build and customise your site
+
+API Reference
+Tools and SDKs for building sites & apps
+
+GET STARTED
+Adding analytics
+Setup comments
+User permissions
+POPULAR
+Updating Ghost
+Custom homepages
+SEO settings
+View source on GitHub (MIT)
+About Us
+We’re a non-profit startup on a mission
+
+Help Center
+Frequently asked questions
+
+Community Forum
+Talk to thousands of other Ghost users
+
+Product Updates
+See our changelog and roadmap
+
+THE BLOG
+— August 19th, 2020
+How to start a successful membership business without a huge audience
+You can gain serious momentum with your membership business—even with a smaller audience. Find your first 100 true fans, cultivate them, and build a fulfilling and thriving premium community.
+
+Read more on our blog
+Tutorials
+Add a contact form to Ghost
+A contact form on your site is a way for your audience to get in touch with you directly. In this tutorial we’ll show you how to add a custom contact form directly into your Ghost theme.
+
+Prerequisites
+The following tutorial involves customising a Ghost theme, specifically Casper theme. To learn more check out our extensive Handlebars theme documentation as well as our FAQ guides on downloading and uploading themes. If you’re looking for a less code-heavy way of adding a contact form to your Ghost site then check out our form Integrations. You'll also need to sign up to Formspree, which is the service we'll be using for handling form submissions.
+
+Creating a custom page template
+This tutorial covers how to add a contact form to a page with custom styling. To provide more control of where the form can be added, we're going to take this one step further by creating a custom page template. This means all authors of your site will be able to add a form to any page using a single drop-down menu.
+
+Create a new template file
+Create a new file at the root of your theme called custom-page-with-form.hbs and open it in your code editor. To get a head start on the template, and to match the existing page template design, open the existing page.hbs template and copy the code within it into the new custom template file you just created.
+
+Creating a form
+For this tutorial we’re going to be using Formspree, a service designed to add forms to any web page using standard HTML.
+
+Locate a position in your recently created template where you would like a form to be rendered. In my example I've placed the form just after the main content within the page. Using the Formspree documentation as guidance, add a HTML form to the custom-page-with-form.hbs template.
+
+<section class="post-full-content">
+  <div class="post-content">
+    {{content}}
+  </div>
+
+  <form class="contact-form" action="https://formspree.io/YOUR@EMAIL.HERE" method="post">
+    <label for="full-name">Name</label>
+    <input type="text" name="name" id="full-name" placeholder="First and Last" required>
+    <label for="email-address">Email Address</label>
+    <input type="email" name="_replyto" id="email-address" placeholder="Your email address" required>
+    <label for="message">Message</label>
+    <textarea rows="5" name="message" id="message" placeholder="Your message" required></textarea>
+    <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+    <input type="submit" value="Submit">
+  </form>
+
+</section>
+Any message sent using this form will get sent directly to your email inbox. You’ll need to update the form action value with your email. The form above includes Name, Email and Message fields. However if you’re wanting something more custom to your needs, check out the examples in the Formspree Library, or their official documentation.
+
+Styling your contact form
+Next we need to add some style and layout to our form. Depending on your theme, you might already have some default styles for form elements. If you're using Casper, like in this tutorial, the following CSS should get you off to a good start:
+
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.2em 1em;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: none;
+  padding: 0.4em 0.6em 0.5em;
+  color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  font-size: 0.95em;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 1px solid #3eb0ef;
+  outline-offset: -1px;
+}
+.contact-form label[for="full-name"],
+.contact-form label[for="email-address"] {
+  order: -1;
+}
+.contact-form input {
+  order: 0;
+  margin-bottom: 0.6em;
+}
+.contact-form label[for="message"],
+.contact-form textarea {
+  grid-column-end: span 2;
+}
+.contact-form input[type="submit"] {
+  grid-column-start: 2;
+  justify-self: end;
+  margin-top: 0.6em;
+  background: #3eb0ef;
+  color: white;
+  width: auto;
+}
